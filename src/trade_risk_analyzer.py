@@ -144,3 +144,5 @@ try:
 
 except Exception as e:
     logging.error(f"An error occurred while saving reports or graphs: {e}")
+
+    
