@@ -40,3 +40,17 @@ try:
 except Exception as e:
     logging.error(f"Data cleaning error: {e}")
 
+# --- DATA CLEANUP AND PNL CALCULATION ---
+before = len(df)
+df = df.dropna().copy() 
+after = len(df)
+
+logging.info(f"Rows before cleanup: {before}, after cleanup: {after}")
+
+df = df.sort_values("close_date").reset_index(drop=True)
+df["pnl"] = (df["exit_price"] - df["entry_price"]) * df["quantity"] - df["fees"]
+
+# --- AGGREGATING DAILY RETURNS ---
+newdf = df.groupby("close_date")["pnl"].sum().to_frame().reset_index()
+newdf["cumulative_pnl"] = newdf["pnl"].cumsum()
+newdf["daily_returns"] = newdf["cumulative_pnl"].pct_change()
