@@ -1,42 +1,66 @@
-# Trade Performance & Risk Analytics (Excel → PDF)
+# Trade Performance & Risk Analytics
 
-## Project Objective
-This project automates the end-to-end analysis of trading logs, transforming raw Excel transaction data into professional, audit-ready financial performance reports. By calculating institutional-grade risk metrics such as the Sharpe Ratio and Maximum Drawdown, the tool provides a comprehensive overview of a strategy's risk-adjusted returns. It aims to bridge the gap between raw execution data and high-level portfolio management insights through automated visualization and PDF reporting.
+This repository contains a professional-grade automation tool designed to transform raw trading logs into audit-ready financial risk reports. By calculating institutional metrics like the Sharpe Ratio and Maximum Drawdown, it bridges the gap between raw execution data and portfolio management insights.
 
-## Technologies Used
+# 📌 Problem & Solution
+Raw trade logs in Excel format are often difficult to interpret for risk management. Without visualizing the "Equity Curve" or calculating risk-adjusted returns, traders cannot accurately assess if a strategy is truly profitable or simply over-leveraged during volatile periods.
 
-**Python:** Core programming language used for the analytical engine and automation.
+This automation bot:
 
-**Pandas:** For advanced data manipulation, time-series aggregation, and PnL calculation.
+Eliminates manual data processing by automatically calculating PnL, fees, and cumulative returns from Excel transaction logs.
 
-**NumPy:** Used for vectorized numerical operations and risk metric modeling.
+Enforces data integrity through robust validation and cleanup of missing fees or inconsistent date formats.
 
-**Matplotlib:** For generating high-fidelity Equity Curve and Drawdown charts.
+Automates quantitative risk assessment by modeling the Annualized Sharpe Ratio and volatility metrics.
 
-**ReportLab:** For programmatic generation of professional PDF performance reports.
+Streamlines investor relations and internal audits by generating standardized PDF reports with high-fidelity equity and drawdown visualizations.
 
-**Logging:** To ensure transparency in the data processing pipeline and capture runtime execution flow.
+# 🛠 Tech Stack
+**Python:** Core analytical engine and automation orchestration.
 
-## How to Run
+**Pandas:** For advanced time-series aggregation and data manipulation.
 
-1. Ensure the required Python libraries are installed:
+**NumPy:** For vectorized numerical operations and risk metric modeling.
 
+**Matplotlib**: To generate high-fidelity Equity Curve and Drawdown charts.
+
+**ReportLab:** For programmatic generation of professional, audit-ready PDF reports.
+
+**Logging:** To track the data processing pipeline and capture execution flow.
+
+# ⚙️ Core Automation Workflow
+**Ingestion & Validation:** Loads trade data from Excel and enforces strict numeric/datetime type conversions.
+
+**Quantitative Analysis:** Groups trades by date to calculate daily returns, cumulative PnL, and volatility.
+
+**Risk Modeling:** Computes the Annualized Sharpe Ratio and identifies the Maximum Drawdown (underwater periods).
+
+**Visual Reporting:** Generates performance charts and compiles all metrics into a final, portable PDF report.
+
+# 📊 Example Output
+Upon execution, the bot provides real-time logs and generates professional documents in the reports/ directory:
+
+```
+INFO - Excel file loaded successfully
+INFO - Data types converted successfully.
+INFO - Rows before cleanup: 36, after cleanup: 36
+INFO - Sharpe Ratio calculated: 4.45
+INFO - Equity curve graph generated and saved.
+INFO - Drawdown graph generated and saved.
+INFO - PDF report successfully saved at: reports/risk_report.pdf
+```
+
+# 🚀 How to Run
+1. Place your trading log in data/trades.xlsx.
+
+2. Install dependencies:
+
+```
 pip install -r requirements.txt
+```
 
-2. Prepare Data: Place your trading log in data/trades.xlsx.
+3. Run the automation:
 
-3. Run the script:
-
+```
 python src/trade_risk_analyzer.py
-
-4. Review Output: After execution, check the reports/ directory for the generated equity_curve.png, drawdown.png, and the final risk_report.pdf.
-
-## Why This Is Valuable for a Hedge Fund
-
-- Quantitative Risk Assessment: Automatically calculates the Annualized Sharpe Ratio, allowing portfolio managers to evaluate returns relative to volatility.
-
-- Drawdown Management: Visualizes "Underwater" periods (Drawdowns) to identify the strategy's worst-case historical loss scenarios and recovery times.
-
-- Automated Reporting Cycle: Eliminates manual reporting tasks by generating standardized PDF summaries, essential for daily internal audits or investor relations.
-
-- Data Integrity: Includes robust validation and cleanup logic to handle missing fees or inconsistent date formats, ensuring that risk metrics are based on high-quality, sanitized data.
+```
