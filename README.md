@@ -51,7 +51,7 @@ INFO - PDF report successfully saved at: reports/risk_report.pdf
 ```
 
 # 🚀 How to Run
-1. Place your trading log in data/trades.xlsx.
+1. Place your trading log in data/.
 
 2. Install dependencies:
 
